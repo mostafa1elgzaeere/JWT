@@ -73,6 +73,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Src.wsgi.application'
 
+AUTH_USER_MODEL = 'Test.User'
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -114,7 +115,12 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
 
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
+    }
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
@@ -124,9 +130,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-import os
 STATIC_URL = '/static/'
-STATICFILES_DIRS=[
-    os.path.join(BASE_DIR,'static')
-]
-STATIC_ROOT=os.path.join(BASE_DIR,'assests')
